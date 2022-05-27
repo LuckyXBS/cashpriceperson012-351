@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Cash Price - загрузка</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover,shrink-to-fit=no">
+<meta name="author" content="Cash Price">
+<meta name="application-name" content="Cash Price">
+<link rel="icon" href="img/logo.svg">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400&family=IBM+Plex+Sans&family=Inter:wght@300;400&family=Merriweather&family=Overpass&family=Playfair+Display:wght@500&family=Poppins:wght@300&family=Raleway:wght@500&family=Readex+Pro&family=Roboto&family=Roboto+Condensed&family=Roboto+Mono:wght@500&family=Roboto+Slab&family=Rubik:wght@400;500&family=Ubuntu&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="loader">
+         <div class="ring"><img src="img/logo.svg"></div>
+      </div>
+	  
+<div id="app">
+
+<script>
+const loader = document.querySelector(".loader");
+         window.onload = function(){
+           setTimeout(function(){
+			 document.title = 'Cash Price - загрузка'
+             loader.style.opacity = "0";
+             setTimeout(function(){
+               loader.style.display = "none";
+			   document.title = 'Cash Price'
+             }, 500);
+           },1000);
+         }
+</script>
+
+<div class="header" style="background: #161d31;color: #fff;">
+<a onclick="window.location='#'" style="cursor: pointer;">
+<center>
+<div class="logotype" >
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+    <linearGradient id="a" x1="50%" x2="50%" y1="0%" y2="100%">
+        <stop offset="0%" stop-color="#D40D2D"/>
+        <stop offset="88.875%" stop-color="#FF2C2C"/>
+    </linearGradient>
+    <path fill="url(#a)" fill-rule="nonzero" d="M8.64 17c-.116 0-6.138-1.334-6.039-6.505C2.696 5.58 9.568 1 9.568 1s-.148 2.18.253 3.167c.402.988.76 1.52 1.662 2.26.112-.359.365-.74.872-1.246.652 1.324 1.684 2.997 2.452 4.02 1.685 3.275.045 6.259-4.42 7.799-1.18-.056 4.293-3.92-.82-6.65.885 2.73-3.947 3.938-.927 6.65z"/>
+</svg>
+<span style="color: #fff;">CASH PRICE</span>
+</div>
+</center>
+</a>
+</div>
+
+<div class="home bd-grid" style="margin-top: 200px;">
+
+  <div class="popup show" style="user-select: none;">
+    <header>
+      <span>Заявка #12</span>
+
+    </header>
+    <div class="content">
+      <p>INVESTING</p>
+	  <p>Сумма: 1000 RUB</p>
+	  <p>Статус: Ожидание</p>
+      <p style="margin-top: 25px;">Личный код</p>
+      <div class="field">
+        <i class="url-icon uil uil-link"></i>
+        <input type="text" readonly value="012-351">
+      </div>
+	  <a download href="012-351.docx">
+	  <button class="button" style="width: 100%;margin-top: 35px;" >Скачать Документ</button></a>
+    </div>
+  </div>
+  
+  </div>
+  
+  <script>
+    const viewBtn = document.querySelector(".view-modal"),
+    popup = document.querySelector(".popup"),
+    close = popup.querySelector(".close"),
+    field = popup.querySelector(".field"),
+    input = field.querySelector("input"),
+    copy = field.querySelector("button");
+    viewBtn.onclick = ()=>{
+      popup.classList.toggle("show");
+    }
+    close.onclick = ()=>{
+      viewBtn.click();
+    }
+    copy.onclick = ()=>{
+      input.select(); //select input value
+      if(document.execCommand("copy")){ //if the selected text copy
+        field.classList.add("active");
+        copy.innerText = "Скопировано";
+        setTimeout(()=>{
+          window.getSelection().removeAllRanges(); //remove selection from document
+          field.classList.remove("active");
+          copy.innerText = "Скопировать";
+        }, 3000);
+      }
+    }
+  </script>
+  
+  <style>
+  .view-modal, .popup{
+  position: absolute;
+  left: 50%;
+}
+.view-modal{
+  cursor: pointer;
+  border-radius: 3px;
+  margin-top: 50px;
+}
+.view-modal{
+  top: 50%;
+  color: #090f1e;
+  font-size: 18px;
+  padding: 10px 25px;
+  background: #fff;
+  transform: translate(-50%, -50%);
+}
+.popup{
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  top: -150%;
+  max-width: 380px;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+  transform: translate(-50%, -50%) scale(1.2);
+  transition: top 0s 0.2s ease-in-out,
+              opacity 0.2s 0s ease-in-out,
+              transform 0.2s 0s ease-in-out;
+}
+.popup.show{
+  top: 50%;
+  opacity: 1;
+  pointer-events: auto;
+  transform:translate(-50%, -50%) scale(1);
+  transition: top 0s 0s ease-in-out,
+              opacity 0.2s 0s ease-in-out,
+              transform 0.2s 0s ease-in-out;
+}
+.popup :is(header, .icons, .field){
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.popup header{
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ebedf9;
+}
+header span{
+  font-size: 21px;
+  font-weight: 600;
+}
+header .close, .icons a{
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+header .close{
+  color: #878787;
+  font-size: 17px;
+  background: #f2f3fb;
+  height: 33px;
+  width: 33px;
+  cursor: pointer;
+}
+header .close:hover{
+  background: #ebedf9;
+}
+.popup .content{
+  margin: 20px 0;
+  display: block!important;
+  background: none!important;
+  box-shadow: none!important;
+  padding: 0!important;
+}
+.popup .icons{
+  margin: 15px 0 20px 0;
+}
+.content p{
+  font-size: 16px;
+}
+.content .icons a{
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.icons a i{
+  transition: transform 0.3s ease-in-out;
+}
+.icons a:nth-child(1){
+  color: #1877F2;
+  border-color: #b7d4fb;
+}
+.icons a:nth-child(1):hover{
+  background: #1877F2;
+}
+.icons a:nth-child(2){
+  color: #46C1F6;
+  border-color: #b6e7fc;
+}
+.icons a:nth-child(2):hover{
+  background: #46C1F6;
+}
+.icons a:nth-child(3){
+  color: #e1306c;
+  border-color: #f5bccf;
+}
+.icons a:nth-child(3):hover{
+  background: #e1306c;
+}
+.icons a:nth-child(4){
+  color: #25D366;
+  border-color: #bef4d2;
+}
+.icons a:nth-child(4):hover{
+  background: #25D366;
+}
+.icons a:nth-child(5){
+  color: #0088cc;
+  border-color: #b3e6ff;
+}
+.icons a:nth-child(5):hover{
+  background: #0088cc;
+}
+.icons a:hover{
+  color: #fff;
+  border-color: transparent;
+}
+.icons a:hover i{
+  transform: scale(1.2);
+}
+.content .field{
+  margin: 12px 0 -5px 0;
+  height: 45px;
+  border-radius: 4px;
+  padding: 0 5px;
+  border: 1px solid #e1e1e1;
+}
+.field.active{
+  border-color: #161d31;
+}
+.field i{
+  width: 50px;
+  font-size: 18px;
+  text-align: center;
+}
+.field.active i{
+  color: #161d31;
+}
+.field input{
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 15px;
+}
+.field button{
+  color: #fff;
+  padding: 5px 18px;
+  background: #FF2C2C;
+}
+.field button:hover{
+  background: #D40D2D;
+}
+  </style>
+	
+<script src="js/commons.js"></script>
+
+
+</div>
+</body>
+</html>
